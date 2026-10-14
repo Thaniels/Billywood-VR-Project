@@ -1,0 +1,539 @@
+/* ============================================================
+   BOULDOR — STIJLEN (CSS)
+   ------------------------------------------------------------
+   Wil je het uiterlijk aanpassen? Begin bij :root hieronder:
+   daar staan de kleuren en basis-instellingen.
+   Daaronder staat per onderdeel een kopje met commentaar.
+   ============================================================ */
+
+:root {
+  --achtergrond: #0f172a;   /* kleur van de pagina */
+  --paneel: #1e293b;        /* kleur van kaartjes/panelen */
+  --paneel-donker: #0b1222; /* kleur van pop-ups */
+  --tekst: #e2e8f0;         /* gewone tekst */
+  --tekst-zacht: #94a3b8;   /* grijze tekst */
+  --accent: #fbbf24;        /* geel/oranje: knoppen en markeringen */
+  --goed: #a3e635;         /* groen: geslaagde pogingen */
+  --fout: #f43f5e;         /* rood: gevallen pogingen */
+  --rand: rgba(255, 255, 255, 0.1);
+  --radius: 16px;           /* rondheid van hoeken */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--achtergrond);
+  color: var(--tekst);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* De app is opgebouwd als een telefoon-kolom in het midden */
+#app {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2 {
+  margin: 0 0 4px;
+}
+h1 { font-size: 30px; letter-spacing: -0.5px; }
+h2 { font-size: 18px; }
+
+.zacht { color: var(--tekst-zacht); }
+.mini { font-size: 12px; }
+.vet { font-weight: 700; }
+.midden { text-align: center; }
+.groot-icoon { font-size: 40px; margin-bottom: 6px; }
+
+/* ---------------- Bovenkant (kop) ---------------- */
+
+.kop {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(15, 23, 42, 0.95);
+  border-bottom: 1px solid var(--rand);
+  backdrop-filter: blur(8px);
+}
+.kop-naam { font-weight: 700; font-size: 15px; }
+.kop-punten { font-size: 12px; }
+.kop-knoppen { display: flex; gap: 6px; }
+
+.setup-kop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 24px 4px 8px;
+}
+
+/* ---------------- Inhoud ---------------- */
+
+main {
+  flex: 1;
+  padding: 16px 16px 96px;
+}
+
+.paneel {
+  background: var(--paneel);
+  border: 1px solid var(--rand);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin-bottom: 14px;
+}
+.paneel.midden {
+  text-align: center;
+  padding: 32px 18px;
+}
+
+.label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--tekst-zacht);
+  margin: 14px 0 6px;
+}
+
+.invoer {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--rand);
+  background: var(--paneel-donker);
+  color: var(--tekst);
+  font-size: 16px;
+}
+
+/* rij met keuze-knoppen (puntendoel, tiers, ...) */
+.rij {
+  display: flex;
+  gap: 8px;
+}
+.keuze {
+  flex: 1;
+  padding: 10px 4px;
+  border-radius: 12px;
+  border: 1px solid var(--rand);
+  background: var(--paneel);
+  color: var(--tekst);
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+}
+.keuze.actief {
+  background: var(--accent);
+  color: #1e293b;
+  border-color: var(--accent);
+}
+
+.kolom { display: flex; flex-direction: column; gap: 8px; }
+
+/* ---------------- Knoppen ---------------- */
+
+.knop {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+}
+.knop-primair { background: var(--accent); color: #1e293b; }
+.knop-secundair {
+  background: transparent;
+  color: var(--tekst);
+  border: 1px solid var(--rand);
+}
+.knop-goed {
+  background: rgba(163, 230, 53, 0.12);
+  color: var(--goed);
+  border: 1px solid rgba(163, 230, 53, 0.45);
+}
+.knop-fout {
+  background: rgba(244, 63, 94, 0.12);
+  color: var(--fout);
+  border: 1px solid rgba(244, 63, 94, 0.45);
+}
+.knop:disabled { opacity: 0.4; cursor: default; }
+
+.knop-mini {
+  padding: 6px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--rand);
+  background: var(--paneel);
+  color: var(--tekst);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.link-knop {
+  background: none;
+  border: none;
+  color: var(--tekst-zacht);
+  font-size: 13px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+/* ---------------- Navigatie onderaan ---------------- */
+
+.nav-onder {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  border-top: 1px solid var(--rand);
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(8px);
+  z-index: 30;
+}
+.nav-knop {
+  flex: 1;
+  padding: 8px 0 12px;
+  background: none;
+  border: none;
+  color: var(--tekst-zacht);
+  font-size: 11px;
+  cursor: pointer;
+}
+.nav-knop.actief { color: var(--accent); }
+.nav-knop .icoon {
+  display: block;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+/* ---------------- Kaart (kaartjes in de app) ---------------- */
+
+.kaart {
+  background: var(--paneel);
+  border: 1px solid var(--rand);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 14px;
+}
+.kaart-kop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.kaart-id {
+  background: #334155;
+  padding: 2px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.badge {
+  border: 1px solid var(--rand);
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 12px;
+  color: var(--tekst-zacht);
+}
+.punten-groot {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--accent);
+}
+.kleur-regel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: 14px;
+}
+.kleur-stip {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  flex: none;
+}
+
+/* ---------------- Route-regels (pogingen loggen) ---------------- */
+
+.route {
+  background: var(--paneel);
+  border: 1px solid var(--rand);
+  border-radius: 14px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+.route-kop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.route-graad {
+  background: var(--paneel-donker);
+  color: var(--accent);
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 800;
+}
+.poging-stippen {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0;
+}
+.stip {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #475569;
+}
+.stip.ok { background: var(--goed); }
+.stip.mislukt { background: var(--fout); }
+.poging-knoppen {
+  display: flex;
+  gap: 8px;
+}
+.poging-knoppen .knop { margin-top: 0; }
+
+/* ---------------- Overzichten (dashboard) ---------------- */
+
+.punten-balk-houder {
+  height: 12px;
+  background: #0b1222;
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+.punten-balk {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f59e0b, var(--goed));
+}
+.uitkienst-regel {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  padding: 2px 0;
+}
+.tier-rooster {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+.tier-vak {
+  background: var(--paneel);
+  border: 1px solid var(--rand);
+  border-radius: 12px;
+  padding: 10px 2px;
+  text-align: center;
+}
+.tier-vak .aantal { font-size: 20px; font-weight: 900; color: var(--accent); }
+.tier-vak .naam { font-size: 11px; color: var(--tekst-zacht); }
+
+.hold-rooster {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.hold-vak {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--paneel);
+  border: 1px solid var(--rand);
+  border-radius: 12px;
+  padding: 8px 10px;
+  font-size: 13px;
+}
+.hold-vak .aantal {
+  margin-left: auto;
+  font-weight: 800;
+  color: var(--goed);
+}
+
+.edele {
+  background: var(--paneel);
+  border: 1px solid var(--rand);
+  border-radius: 14px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+.edele.behaald { background: rgba(163, 230, 53, 0.08); border-color: rgba(163, 230, 53, 0.5); }
+.edelen-eisen {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.eis {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 8px;
+  background: var(--paneel-donker);
+  border: 1px solid var(--rand);
+  color: var(--tekst-zacht);
+}
+.eis i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.eis.ok {
+  color: var(--goed);
+  border-color: rgba(163, 230, 53, 0.4);
+  background: rgba(163, 230, 53, 0.08);
+}
+
+/* ---------------- Pop-up (modal) ---------------- */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 50;
+  padding: 12px;
+}
+.modal-inhoud {
+  background: var(--paneel-donker);
+  border: 1px solid var(--rand);
+  border-radius: 20px;
+  padding: 18px;
+  width: 100%;
+  max-width: 480px;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+.scroll {
+  max-height: 55vh;
+  overflow-y: auto;
+}
+
+/* Kiezer: kaart kiezen zonder scannen */
+.kiezer-kaart {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  background: var(--paneel);
+  border: 1px solid var(--rand);
+  border-radius: 12px;
+  padding: 10px;
+  color: var(--tekst);
+  cursor: pointer;
+  text-align: left;
+}
+.kiezer-kaart .punten { margin-left: auto; color: var(--accent); font-weight: 800; }
+
+/* ---------------- QR-scanner ---------------- */
+
+.scanner-venster {
+  position: relative;
+  width: 230px;
+  height: 190px;
+  margin: 0 auto 12px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+}
+.scanner-venster video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.scan-lijn {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+  animation: scan 1.2s ease-in-out infinite;
+}
+@keyframes scan {
+  0% { top: 12%; }
+  50% { top: 86%; }
+  100% { top: 12%; }
+}
+
+/* ---------------- QR-printblad ---------------- */
+
+.qr-rooster {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.qr-item {
+  background: #ffffff;
+  color: #0f172a;
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+}
+.qr-item svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.qr-label {
+  font-size: 11px;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+/* ---------------- Toast (korte melding) ---------------- */
+
+.toast {
+  position: fixed;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  z-index: 60;
+  background: var(--goed);
+  color: #1e293b;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+  max-width: 90vw;
+  text-align: center;
+}
+.toast.warn {
+  background: var(--fout);
+  color: #ffffff;
+}
+.hidden { display: none; }
+
+/* ---------------- Afdrukken (QR-blad) ---------------- */
+
+@media print {
+  body { background: #ffffff; }
+  .geen-print { display: none !important; }
+  main { padding: 0; }
+  .qr-rooster { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .qr-item { border-radius: 6px; page-break-inside: avoid; }
+}

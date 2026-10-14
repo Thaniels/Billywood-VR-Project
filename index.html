@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="description" content="Bouldor — log je klimspel in de boulderhal" />
+  <title>Bouldor</title>
+
+  <!-- PWA: hierdoor kan de site als "app" op je telefoonthuis-scherm -->
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- De hele app wordt door app.js in dit element getekend. -->
+  <div id="app"></div>
+
+  <!-- Korte meldingen (toast) -->
+  <div id="toast" class="toast hidden"></div>
+
+  <!--
+    Bibliotheek 1: jsQR — leest QR-codes via de camera.
+    Bibliotheek 2: qrcode-generator — tekent QR-codes voor het printblad.
+  -->
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
